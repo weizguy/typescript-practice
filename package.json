@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "lite-server"
   },
-  "author": "Maximilian Schwarzmüller",
+  "author": "Dave Weizenegger",
   "license": "ISC",
   "devDependencies": {
     "lite-server": "^2.6.1"
