@@ -1,60 +1,46 @@
-// const userName = 'Dave';
-// // userName = 'Weizguy';
-// let age = 49;
+// type AddFn = (a: number, b: number) => number;
+interface AddFn {
+  (a: number, b: number): number;
+}
 
-// age = 50;
+let add: AddFn;
 
-// function add(a: number, b: number) {
-//   let result;
-//   result = a + b;
-//   return result;
-// }
-
-// if (age > 60) {
-//   let isOld = true;
-// }
-
-// console.log(isOld);
-
-// console.log(result);
-
-// const add = (a: number, b: number = 1) => a + b;
-
-// const printOutput: (a: number | string) => void = output => console.log(output);
-
-// const button = document.querySelector('button');
-
-// if (button) {
-//   button.addEventListener('click', event => console.log(event));
-// }
-
-// printOutput(add(5));
-
-const hobbies = ['Programming', 'Gaming'];
-const activeHobbies = ['Working out'];
-
-activeHobbies.push(...hobbies);
-
-const person = {
-  firstName: 'Dave',
-  age: 49
+add = (n1: number, n2: number) => {
+  return n1 + n2;
 };
 
-const copiedPerson = { ...person };
+interface Named {
+  readonly name?: string;
+  outputName?: string;
+}
 
-const add = (...numbers: number[]) => {
-  return numbers.reduce((curResult, curValue) => {
-    return curResult + curValue;
-  }, 0);
-};
+interface Greetable extends Named {
+  greet(phrase: string): void;
+}
 
-const addedNumbers = add(5, 10, 2, 3.7);
-console.log(addedNumbers);
+class Person implements Greetable {
+  name?: string;
+  age = 30;
 
-const [hobby1, hobby2, ...remainingHobbies] = hobbies;
+  constructor(n?: string) {
+    if (n) {
+      this.name = n;
+    }
+  }
 
-console.log(hobbies, hobby1, hobby2);
+  greet(phrase: string) {
+    if (this.name) {
+      console.log(phrase + ' ' + this.name);
+    } else {
+      console.log('Hi!');
+    }
+  }
+}
 
-const { firstName: userName, age } = person;
+let user1: Greetable;
 
-console.log(userName, age, person);
+user1 = new Person();
+// user1.name = 'Dave';
+
+user1.greet('Hi there - I am');
+console.log(user1);
